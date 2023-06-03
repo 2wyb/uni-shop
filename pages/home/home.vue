@@ -1,5 +1,8 @@
 <template>
   <view>
+    <view class="search-box">
+      <my-search @click="gotoSearch"></my-search>
+    </view>
     <!-- 轮播图区域 -->
     <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">
       <!-- 循环渲染轮播图的 item 项 -->
@@ -52,6 +55,11 @@
       };
     },
     methods: {
+      gotoSearch() {
+        uni.navigateTo({
+          url: '/subpkg/search/search'
+        })
+      },
       navClickHandler(item) {
         if (item.name === '分类') {
           uni.switchTab({
@@ -98,6 +106,15 @@
 </script>
 
 <style lang="scss">
+  // 实现吸顶效果
+  .search-box {
+    position: sticky;
+    /* 吸顶的位置 */
+    top: 0;
+    /* 提高层级，防止被轮播图覆盖 */
+    z-index: 999;
+  }
+
   swiper {
     height: 330rpx;
 
